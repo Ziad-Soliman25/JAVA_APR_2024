@@ -14,7 +14,7 @@
 <img src="https://github.com/jupiterorbita/git_assets/blob/master/java_shield_badge_crop.png?raw=true" alt="JAVA logo" width="180">
 
 
-## <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/eclipse-icon.png" width="33"/>  &nbsp; Eclipse Shortcut
+## <img src="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/eclipse-icon.png" width="33"/>  &nbsp; Eclipse Shortcuts
 | Windows | Mac    | Functions |
 |----------------- | -----------------| --------------|
 | Alt + Shift S  | Command + Option+ S| Open Source to create getter/setter|
