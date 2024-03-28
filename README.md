@@ -1,6 +1,6 @@
 # JAVA - APRIL 2024
 
-[![Open in Visual Studio Code](https://img.shields.io/badge/open%20in%20vscode-blue??style=for-the-badge&logo=visualstudiocode)](https://open.vscode.dev/jupiterorbita/JAVA_OCT_2022)
+[![Open in Visual Studio Code](https://img.shields.io/badge/open%20in%20vscode-blue??style=for-the-badge&logo=visualstudiocode)](https://open.vscode.dev/jupiterorbita/JAVA_APR_2024)
 
 ## clone this repo, then `git pull` to get the latest changes or `fork` and `sync`
 
