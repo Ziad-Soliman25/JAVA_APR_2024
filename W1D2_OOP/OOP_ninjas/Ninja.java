@@ -3,17 +3,20 @@ public class Ninja{
     private String name;
     private String weapon;
     private Integer health;
+    private static int numberOfNinjasGraduated = 0;
 
     // constructor(s)
     public Ninja() {
         this.name = "anonymous";
         this.weapon = "hands";
         this.health = 1000;
+        numberOfNinjasGraduated++;
     }
     public Ninja(String someName, String weapon, Integer health) {
         this.name = someName;
         this.weapon = weapon;
         this.health = health;
+        numberOfNinjasGraduated++;
     }
 
     // === METHODS ====
@@ -28,6 +31,10 @@ public class Ninja{
         return this;
     }
 
+    // STATIC getter
+    public static int getNumberOfNinjasGraduated() {
+        return numberOfNinjasGraduated;
+    }
 
     // ====== GETTERS AND SETTERS ========
     // getter for name

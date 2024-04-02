@@ -13,5 +13,13 @@ public class TestNinja {
         // vegeta.attack(naruto);
         // vegeta.attack(naruto);
         // vegeta.attack(naruto);
+
+        Ninja donatello = new Ninja("Donatello", "staff", 100);
+
+        System.out.println(
+        Ninja.getNumberOfNinjasGraduated()
+        );
+
+
     }
 }
