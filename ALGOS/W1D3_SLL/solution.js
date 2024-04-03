@@ -29,17 +29,33 @@ class SLL {
     // console log (print) the data of every node in the current list
     // traversal
     read() {
-        // TODO
+        var runner = this.head;
+        while (runner) {
+            console.log(runner.data);
+            runner = runner.next;
+        }
     }
 
     // find: return true / false if current list contains a data equal to value
     contains(value) {
-        // TODO
+        var runner = this.head;
+        while (runner) {
+            if (runner.data === value) {
+                return true;
+            }
+            runner = runner.next;
+        }
+        return false;
     }
 
     // Remove from front: remove and return the first node in the SLL
     removeFromFront() {
-        // TODO
+        var runner = this.head;
+        if (runner.next) {
+            this.head = runner.next;
+            runner.next = null;
+        }
+        return runner;
     }
 }
 
@@ -61,28 +77,3 @@ console.log(myCoolSLL);
 // console.log(myCoolSLL);
 
 
-
-var myList = {
-    data: 11,
-    next: {
-        data: 22,
-        next: {
-            data: 33,
-            next: {
-                data: 1337,
-                next: {
-                    data: 9001,
-                    next: null
-                }
-            }
-        }
-    }
-};
-
-let runner = this.head;
-while (runner) {
-    // log the data
-    runner = runner.next;
-}
-
-console.log(myList.next);
