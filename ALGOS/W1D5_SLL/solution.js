@@ -115,6 +115,18 @@ class SLL {
         }
     }
 
+    // alternative
+    printSecondToLastValue2() {
+        let firstRunner = this.head;
+        let secondRunner;
+
+        while (firstRunner.next) {
+            secondRunner = firstRunner;
+            firstRunner = firstRunner.next;
+        }
+        console.log(secondRunner.data);
+    }
+
     // bonus: print nth to last
     // if the link list has a nth to last value, print it
     // return nothing
@@ -141,6 +153,25 @@ class SLL {
         if (count > n) {
             console.log(runnerSlow.data);
         }
+    }
+
+    // alternative
+    printNthToLast2(n) {
+        let firstRunner = this.head;
+        let secondRunner = this.head;
+
+        for (let i = 0; i < n; i++) {
+            if (!firstRunner.next) {
+                console.log("This list isn't long enough!!");
+                return;
+            }
+            firstRunner = firstRunner.next;
+        }
+        while (firstRunner) {
+            secondRunner = secondRunner.next;
+            firstRunner = firstRunner.next;
+        }
+        console.log(secondRunner.data);
     }
 
     // reverse linked list in place

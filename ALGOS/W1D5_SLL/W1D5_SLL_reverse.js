@@ -19,15 +19,12 @@ class SLL {
         this.head = node; // move the head to the new node
     }
 
-    addDataToFront(data) { // 10
+    addDataToFront(data) {
         var newNode = new Node(data); // create a new node with the data
         newNode.next = this.head; // set the new node's next to the head
         this.head = newNode; // move the head to the new node
     }
 
-    // ---- new methods ----
-    // console log (print) the data of every node in the current list
-    // traversal
     read() {
         var runner = this.head;
         while (runner) {
@@ -36,7 +33,6 @@ class SLL {
         }
     }
 
-    // find: return true / false if current list contains a data equal to value
     contains(value) {
         var runner = this.head;
         while (runner) {
@@ -48,7 +44,6 @@ class SLL {
         return false;
     }
 
-    // Remove from front: remove and return the first node in the SLL
     removeFromFront() {
         var runner = this.head;
         if (runner.next) {
@@ -58,13 +53,6 @@ class SLL {
         return runner;
     }
 
-    // === new methods ===
-    // if data is contained within the current list, delete it.
-    // return void
-    // assume there are no duplicates
-    // consider the edge case if you have to delete the head node
-    // consider the edge case your list is empty
-    // consider the edge case that your list does not contain the data
     delete(data) {
         // create a runner
         let runner = this.head;
@@ -89,9 +77,6 @@ class SLL {
         }
     }
 
-    // runner here is undefined
-    // return the size of the current linked list
-    // BONUS: how might you do this without linearly traversing the list? O(1)
     size() {
         let size = 0; // hold on to the length
         let runner = this.head; // set runner
@@ -115,7 +100,7 @@ class SLL {
     // bonus: print nth to last
     // if the link list has a nth to last value, print it
     // return nothing
-    //                🐢                           🐇
+    //
     // input: head -> (1) -> (5) -> (11) -> (7) -> (9) -> (4) -> (19) -> (30) -> null
     //        n = 4
     // print: 9
@@ -144,11 +129,7 @@ myCoolSLL.addToFront(new Node(33));
 myCoolSLL.addToFront(new Node(22));
 console.log(myCoolSLL);
 console.log(myCoolSLL.size());
-// ----- new methods ------
-// myCoolSLL.read(); // 22 -> 33 -> 44 -> 100
-// console.log(myCoolSLL.contains(22)); // true
-// console.log(myCoolSLL.contains(800)); // false
-// myCoolSLL.removeFromFront();
-// console.log(myCoolSLL);
+// ----- new methods test here------
+
 
 
