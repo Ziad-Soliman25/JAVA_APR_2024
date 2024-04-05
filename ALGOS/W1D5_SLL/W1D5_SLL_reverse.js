@@ -19,12 +19,13 @@ class SLL {
         this.head = node; // move the head to the new node
     }
 
-    addDataToFront(data) {
+    addDataToFront(data) { // 10
         var newNode = new Node(data); // create a new node with the data
         newNode.next = this.head; // set the new node's next to the head
         this.head = newNode; // move the head to the new node
     }
 
+    // ---- new methods ----
     // console log (print) the data of every node in the current list
     // traversal
     read() {
@@ -57,8 +58,13 @@ class SLL {
         return runner;
     }
 
+    // === new methods ===
     // if data is contained within the current list, delete it.
     // return void
+    // assume there are no duplicates
+    // consider the edge case if you have to delete the head node
+    // consider the edge case your list is empty
+    // consider the edge case that your list does not contain the data
     delete(data) {
         // create a runner
         let runner = this.head;
@@ -83,7 +89,9 @@ class SLL {
         }
     }
 
+    // runner here is undefined
     // return the size of the current linked list
+    // BONUS: how might you do this without linearly traversing the list? O(1)
     size() {
         let size = 0; // hold on to the length
         let runner = this.head; // set runner
@@ -101,18 +109,7 @@ class SLL {
     // input: head -> (1) -> (5) -> (11) -> (7) -> (9) -> null
     // print: 7
     printSecondToLastValue() {
-        let runner = this.head;
-
-        if (!runner) return;
-        if (!runner.next) return;
-
-        while (runner.next) {
-            if (runner.next.next === null) {
-                console.log(runner.data);
-                return;
-            }
-            runner = runner.next;
-        }
+        // TODO
     }
 
     // bonus: print nth to last
@@ -124,23 +121,7 @@ class SLL {
     // print: 9
     // hint - use 2 runners
     printNthToLast(n) {
-        if (this.head === null) return;
-
-        var runnerFast = this.head;
-        var runnerSlow = this.head;
-        var count = 0;
-
-        while (runnerFast) {
-            if (count >= n) {
-                runnerSlow = runnerSlow.next;
-            }
-            runnerFast = runnerFast.next;
-            count++;
-        }
-
-        if (count > n) {
-            console.log(runnerSlow.data);
-        }
+        // TODO
     }
 
     // reverse linked list in place
@@ -148,16 +129,7 @@ class SLL {
     // input:  head -> (1) -> (2) -> (3) -> null
     // output: head -> (3) -> (2) -> (1) -> null
     reverse() {
-        var prev = null;
-        var current = this.head;
-        var next = null;
-        while (current) {
-            next = current.next;
-            current.next = prev; //node
-            prev = current;
-            current = next;
-        }
-        this.head = prev;
+        // TODO
     }
 }
 
@@ -171,6 +143,12 @@ myCoolSLL.addToFront(new Node(44));
 myCoolSLL.addToFront(new Node(33));
 myCoolSLL.addToFront(new Node(22));
 console.log(myCoolSLL);
+console.log(myCoolSLL.size());
 // ----- new methods ------
-// test your delete method
+// myCoolSLL.read(); // 22 -> 33 -> 44 -> 100
+// console.log(myCoolSLL.contains(22)); // true
+// console.log(myCoolSLL.contains(800)); // false
+// myCoolSLL.removeFromFront();
+// console.log(myCoolSLL);
+
 
