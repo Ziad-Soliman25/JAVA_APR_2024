@@ -32,7 +32,7 @@ public class TripService {
 	}
 	
 //	READ ONE
-	public Trip findBook(Long id) {
+	public Trip findTrip(Long id) {
         Optional<Trip> optionalTrip = tripRepo.findById(id);
         if(optionalTrip.isPresent()) {
             return optionalTrip.get();
@@ -41,8 +41,15 @@ public class TripService {
         }
     }
 	
-//	UPDATE
+//	UPDATE -- similar to create // as long as i provide an object with an id
+	public Trip updateTrip(Trip oneTrip) {
+		return tripRepo.save(oneTrip);
+	}
+	
 //	DELETE
+	public void deleteTrip(Long id) {
+		tripRepo.deleteById(id);
+	}
 }
 
 
