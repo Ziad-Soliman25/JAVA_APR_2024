@@ -5,18 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.john.hellomvc.models.Trip;
 import com.john.hellomvc.service.TripService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class TripController {
 	
 	@Autowired
 	private TripService tripService;
-
+	
+//	simple redirect
+	@GetMapping("/")
+	public String tripRedirect() {
+		return "redirect:/trips";
+	}
+	
 //	READ ALL PAGE
 //	GET: /trips
 	@GetMapping("/trips")
@@ -41,7 +52,33 @@ public class TripController {
 		return "tripDetails.jsp";
 	}
 	
+//	CREATE - PAGE
+//	GET /trips/new
+	@GetMapping("/trips/new")
+	public String displayCreatePage(
+			@ModelAttribute("newTrip") Trip newTrip
+			) {
+		return "newTrip.jsp";
+	}
 	
+//	CREATE - METHOD
+//	POST: /trips/new
+	@PostMapping("/trips/new")
+	public String processCreateForm(
+			@Valid @ModelAttribute("newTrip") Trip newTrip,
+			BindingResult result
+			) {
+		System.out.println(result);
+		if (result.hasErrors()) {
+			return "newTrip.jsp"; // RENDER ERRORS
+		} else {
+			tripService.createTrip(newTrip);
+			return "redirect:/trips";
+		}
+	}
+	
+//	TODO:
+//	UPDATE / DELETE
 }
 
 

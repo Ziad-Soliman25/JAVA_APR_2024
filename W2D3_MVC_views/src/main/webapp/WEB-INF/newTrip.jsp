@@ -19,15 +19,51 @@
 </head>
 <body>
 <div class="container">
-	<p>trip details</p>
+	<h1>Add a new trip!</h1>
 	<a href="/trips">back</a>
-	${oneTrip.location } by ${oneTrip.owner }
+	<hr />
+	
+	<form:form action="/trips/new" method="POST" modelAttribute="newTrip">
+		<div>
+			<form:label path="location">location</form:label>
+			<form:input path="location" class="form-control"/>
+			<form:errors path="location" style="color:red"/>
+		</div>
+		<div>
+			<form:label path="tripLength">tripLength</form:label>
+			<form:input type="number" step="1" path="tripLength" class="form-control" />
+			<form:errors path="tripLength" class="err"/>
+		</div>
+		<div>
+			<form:label path="description">description</form:label>
+			<form:textarea path="description" class="form-control"/>
+			<form:errors path="description" class="err"/>
+		</div>
+		<div>
+			<form:label path="owner">owner</form:label>
+			<form:input path="owner" class="form-control"/>
+			<form:errors path="owner" class="err"/>
+		</div>
+		
+		<p></p>
+		<input type="submit" value="create!" class="btn btn-primary" />
+	
+	</form:form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </div>
 </body>
 </html>
-
-
-
-
 
 

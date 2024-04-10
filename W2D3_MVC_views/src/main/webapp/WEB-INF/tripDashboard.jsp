@@ -21,6 +21,7 @@
 <div class="container">
 	<h1>Trip Dashboard</h1>
 	<%-- <c:out value="${tripList}"/> --%>
+	<a href="/trips/new">create new Trip</a>
 	<hr />
 	<table class="table">
 		<thead>

@@ -39,7 +39,7 @@ public class Trip {
 	private String description;
 
 	@NotNull
-	@Size(min = 2)
+	@Size(min = 2, message="must be at least 2 characters!!!")
 	private String owner; // "Bob", "Alice"
 
 	@Column(updatable = false)
@@ -63,12 +63,12 @@ public class Trip {
 	public Trip() {
 	}
 
-	public Trip(String location, Integer tripLength, String description, String owner) {
-		this.location = location;
-		this.tripLength = tripLength;
-		this.description = description;
-		this.owner = owner;
-	}
+//	public Trip(String location, Integer tripLength, String description, String owner) {
+//		this.location = location;
+//		this.tripLength = tripLength;
+//		this.description = description;
+//		this.owner = owner;
+//	}
 
 //	=== GETTERS AN SETTERS ===
 	public Long getId() {
