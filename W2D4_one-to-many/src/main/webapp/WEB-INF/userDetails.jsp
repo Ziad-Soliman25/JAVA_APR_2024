@@ -19,50 +19,13 @@
 </head>
 <body>
 <div class="container">
-	<h1>Trip Board</h1>
-	<a href="/users/new">ADD A USER</a> |
-	<a href="/trips/new">ADD A TRIP</a>
-	<hr />
-	
-	<table class="table">
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>Location</th>
-				<th>length</th>
-				<th>owner</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${tripList }" var="eachTrip">
-				<tr>
-					<td>${eachTrip.id }</td>
-					<td>
-						<a href="/trips/${eachTrip.id }">${eachTrip.location }</a>		
-					</td>
-					<td>${eachTrip.tripLength }</td>
-					<td>
-						<a href="/users/${eachTrip.owner.id }">
-							${eachTrip.owner.username}
-						</a>
-					</td>
-					
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<h1>Details about ${ thisOwner.username}</h1>
+	<div>
+	<c:forEach items="${thisOwner.ownedTrips}" var="eachTrip">
+		<li>${eachTrip.location }</li>
+	</c:forEach>
+		
+	</div>
 	
 </div>
 </body>

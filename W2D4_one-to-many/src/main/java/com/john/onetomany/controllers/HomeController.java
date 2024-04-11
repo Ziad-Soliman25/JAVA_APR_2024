@@ -1,12 +1,17 @@
 package com.john.onetomany.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.john.onetomany.models.Trip;
 import com.john.onetomany.models.User;
 import com.john.onetomany.services.TripService;
 import com.john.onetomany.services.UserService;
@@ -23,11 +28,20 @@ public class HomeController {
 	@Autowired
 	private TripService tripService;
 	
+//	simple redirect
+	@GetMapping("/")
+	public String indexRedirect() {
+		return "redirect:/trips";
+	}
+	
 //	GET: /trips
 	@GetMapping("/trips")
-	public String displayTripDashboard() {
+	public String displayTripDashboard(Model model) {
+		model.addAttribute("tripList", tripService.allTrips());
 		return "tripDashboard.jsp";
 	}
+	
+	
 	
 	
 //	----- USER ROUTES ----
@@ -47,11 +61,74 @@ public class HomeController {
             return "addUser.jsp";
         } else {
             userService.createUser(newUser);
-            return "redirect:/users/new";
+            return "redirect:/users/new"; // get
         }
 	}
 	
+//	GET ONE USER (and everything about them)
+//	GET /users/3
+	@GetMapping("/users/{id}")
+	public String renderUserDetailsPage(
+			@PathVariable("id") Long id, Model model) {
+		User thisOwner = userService.findUser(id);
+		model.addAttribute("thisOwner", thisOwner);
+		return "userDetails.jsp";
+	}
+	
+	
+//	----- TRIP ROUTES -----
+	
+//	GET /trips/2
+	@GetMapping("/trips/{id}")
+	public String renderTripDetailsPage(
+			@PathVariable("id") Long id, Model model) {
+//		1. get the trip
+		Trip oneTrip = tripService.findTrip(id);
+		model.addAttribute("oneTrip", oneTrip);
+		return "tripDetails.jsp";
+	}
+	
+//	GET /trips/new
+	@GetMapping("/trips/new")
+	public String renderTripCreateForm(
+			@ModelAttribute("newTrip") Trip newTrip, Model model) {
+//		need to pass all the users to pick!
+//		List<User> userList = userService.allUsers();
+		model.addAttribute("userList", userService.allUsers());
+		return "addTrip.jsp";
+	}
+	
+//	POST /trips/new
+	@PostMapping("/trips/new")
+	public String processTripForm(
+			@Valid @ModelAttribute("newTrip") Trip newTrip,
+			BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("userList", userService.allUsers());
+			return "addTrip.jsp";
+		} else {
+			tripService.createTrip(newTrip);
+			return "redirect:/trips";
+		}
+	}
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
