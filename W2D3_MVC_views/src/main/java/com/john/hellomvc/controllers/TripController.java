@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.john.hellomvc.models.Trip;
 import com.john.hellomvc.service.TripService;
@@ -79,6 +82,38 @@ public class TripController {
 	
 //	TODO:
 //	UPDATE / DELETE
+//	NOT PART OF LECTURE
+	
+	@GetMapping("/trips/{id}/edit")
+	public String renderEditPage(
+			@PathVariable("id") Long id, Model model) {
+//		1. get the id from path
+//		2. get the trip from the service with the id
+		Trip oneTrip = tripService.findTrip(id);
+//		3. pass it to the jsp with model to be inside the form:form modelAttribute
+		model.addAttribute("oneTrip", oneTrip);
+		return "editTrip.jsp";
+	}
+	
+    @PutMapping("/trips/{id}/edit")
+    public String update(@Valid @ModelAttribute("oneTrip") Trip oneTrip, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("oneTrip", oneTrip);
+            return "editTrip.jsp";
+        } else {
+            tripService.updateTrip(oneTrip);
+            return "redirect:/trips";
+        }
+    }
+	
+//	DELETE ------------------------------
+	@DeleteMapping("/trips/{id}/delete")
+	public String deleteTrip(@PathVariable("id") Long id, RedirectAttributes flash) {
+		tripService.deleteTrip(id);
+		flash.addFlashAttribute("deleteSuccess", "deleted your trip!");
+		return "redirect:/trips";
+	}
+	
 }
 
 

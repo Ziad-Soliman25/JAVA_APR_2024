@@ -23,6 +23,14 @@
 	<%-- <c:out value="${tripList}"/> --%>
 	<a href="/trips/new">create new Trip</a>
 	<hr />
+	
+	<!-- flash message after successful delete -->
+	<c:if test="${deleteSuccess ne null}"> 
+		<div class="alert alert-warning" role="alert">
+			${deleteSuccess }
+		</div>
+	</c:if>
+	
 	<table class="table">
 		<thead>
 			<tr>
@@ -30,6 +38,8 @@
 				<td>location</td>
 				<td>planner</td>
 				<td>trip Length</td>
+				<!-- NOT PART OF LECTURE -->
+				<td>ACTIONS</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -41,6 +51,18 @@
 					</td>
 					<td>${eachTrip.owner}</td>
 					<td>${eachTrip.tripLength}</td>
+					<!-- NOT PART OF LECTURE -->
+					<td>
+						<!-- EDIT -->
+						<a href="/trips/${eachTrip.id }/edit">EDIT</a>
+						
+						<!-- DELETE -->
+						<form action="/trips/${eachTrip.id }/delete" method="POST">
+						    <input type="hidden" name="_method" value="delete">
+   							<input type="submit" value="Delete">
+						</form>
+						
+					</td>
 				</tr>
 			</c:forEach>
 			
