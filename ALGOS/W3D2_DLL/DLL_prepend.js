@@ -56,7 +56,7 @@ class DLList {
             return temp;
         }
         var temp = this.tail; // set a temp
-        this.tail = tail.prev; // move the tail back
+        this.tail = this.tail.prev; // move the tail back
         this.tail.next = null; // null out the new tail's next
         temp.prev = null; // null out the temp's prev
         return temp;
