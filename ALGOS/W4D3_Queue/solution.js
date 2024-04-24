@@ -227,12 +227,61 @@ class Queue {
  * @returns {boolean}
  */
 function isPalindrome(q) {
+    let bool = true;
+    let stack = new Stack();
+    let tempQ = new Queue();
+
+    while (!q.isEmpty()) {
+        let tempNode = new Node(q.dequeue());
+        tempQ.enqueue(tempNode);
+        stack.push(tempNode);
+    }
+
+    while (!stack.isEmpty()) {
+        let tempNode = new Node(stack.pop2());
+        if (tempNode.data !== tempQ.front.data.data) {
+            bool = false;
+        }
+        q.enqueue(tempNode);
+        tempQ.dequeue();
+    }
+    return bool;
+
+}
+function isPalindrome2(q) {
+    if (q.rear.data !== q.front.data) {
+        return false;
+    }
+
+    let bool = true;
+    let tempQ = new Queue();
+    let stack = new Stack();
+
+    while (!q.isEmpty()) {
+        let tempNode = new Node(q.dequeue());
+        tempQ.enqueue(tempNode);
+        stack.push(tempNode);
+    }
+    while (tempQ.front !== null) {
+        let tempNode = new Node(tempQ.dequeue());
+        console.log(tempNode.data.data);
+        console.log("Stack: " + stack.top.data, "Queue: " + tempNode.data.data);
+        if (stack.top.data === tempNode.data.data) {
+            q.enqueue(tempNode);
+            stack.pop();
+        } else {
+            q.enqueue(tempNode);
+            stack.pop();
+            bool = false;
+        }
+    }
+    return bool;
 }
 
 // q.back                            q.front
 //  v                                         v
-// (r) <- (a) <- (c) <- (e) <- (c) <- (a) <- (r) 
-// 
+// (r) <- (a) <- (c) <- (e) <- (c) <- (a) <- (r)
+//
 
 // ========== BONUS ==========
 /**
@@ -243,11 +292,42 @@ function isPalindrome(q) {
  * The queues should be returned to their original order when done.
  * - Time: O(?).
  * - Space: O(?).
- * @param {Queue} q1 q2 The queues to be compared 
+ * @param {Queue} q1 q2 The queues to be compared
  * @returns {boolean} Whether all the items of the two queues are equal and
  *    in the same order.
  */
-function compareQueue(q1, q2) { }
+function compareQueue(q1, q2) {
+    //if the size of the 2 queues are different => return false
+    if (q1.size !== q2.size) {
+        return false;
+    }
+    //if the size of the 2 queues are the same
+    //create a stack to store the items of the 2 queues
+    const stack = new Stack();
+    //create a variable to store the result
+    let isSame = true;
+    //loop thru the 2 queues
+    while (!q1.isEmpty()) {
+        //dequeue the 2 queues
+        let dequeItem1 = q1.dequeue();
+        let dequeItem2 = q2.dequeue();
+        //if the 2 items are not the same => return false
+        if (dequeItem1 !== dequeItem2) {
+            isSame = false;
+        }
+        //push the 2 items to the stack
+        stack.push(new Node(dequeItem1));
+        stack.push(new Node(dequeItem2));
+    }
+    //loop thru the stack
+    while (!stack.isEmpty()) {
+        //pop the stack and enqueue the 2 items back to the 2 queues
+        q1.enqueue(stack.pop2());
+        q2.enqueue(stack.pop2());
+    }
+    //return the result
+    return isSame;
+}
 
 var test1 = new Queue();
 test1.enqueue("a");
